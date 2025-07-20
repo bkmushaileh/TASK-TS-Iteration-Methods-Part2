@@ -21,20 +21,24 @@ const transactions: Transaction[] = [
 // filterIncomeTransactions(transactions); // => [["income", 1000], ["income", 1500], ["income", 700]]
 function filterIncomeTransactions(transactions: Transaction[]): Transaction[] {
   // write your code here...
-
-  return []; // replace empty array with what you see is fit
+  const newFilterIncomeTransactions = transactions.filter(
+    (transaction) => transaction[0] === "income"
+  );
+  return newFilterIncomeTransactions; // replace empty array with what you see is fit
 }
-
+console.log(filterIncomeTransactions(transactions));
 // `filterExpenseTransactions` function that:
 // - Accepts a "transactions" parameter of type "Transaction[]".
 // - Return a new array containing only the expense transactions.
 // example:
 // filterExpenseTransactions(transactions); // => [["expense", 500], ["expense", 300]]
 function filterExpenseTransactions(transactions: Transaction[]): Transaction[] {
-  // write your code here...
-
-  return []; // replace empty array with what you see is fit
+  const newFilterExpenseTransactions = transactions.filter(
+    (transaction) => transaction[0] === "expense"
+  );
+  return newFilterExpenseTransactions; // replace empty array with what you see is fit
 }
+console.log(filterExpenseTransactions(transactions));
 
 // `calculateTotalIncome` function that:
 // - Accepts a "transactions" parameter of type "Transaction[]".
@@ -43,9 +47,12 @@ function filterExpenseTransactions(transactions: Transaction[]): Transaction[] {
 // calculateTotalIncome(transactions); // => 3200  (1000 + 1500 + 700)
 function calculateTotalIncome(transactions: Transaction[]): number {
   // write your code here...
-
-  return -1; // replace -1 with what you see is fit
+  const newTotalIncome = transactions
+    .filter((transaction) => transaction[0] === "income")
+    .reduce((total, transaction) => total + transaction[1], 0);
+  return newTotalIncome; // replace -1 with what you see is fit
 }
+console.log(calculateTotalIncome(transactions));
 
 // `calculateTotalExpenses` function that:
 // - Accepts a "transactions" parameter of type "Transaction[]".
@@ -54,9 +61,13 @@ function calculateTotalIncome(transactions: Transaction[]): number {
 // calculateTotalExpenses(transactions); // => 800  (500 + 300)
 function calculateTotalExpenses(transactions: Transaction[]): number {
   // write your code here...
+  const newCalculateExpense = transactions
+    .filter((transaction) => transaction[0] === "expense")
+    .reduce((total, transacion) => total + transacion[1], 0);
 
-  return -1; // replace -1 with what you see is fit
+  return newCalculateExpense; // replace -1 with what you see is fit
 }
+console.log(calculateTotalExpenses(transactions));
 
 // `calculateNetTotal` function that:
 // - Accepts a "transactions" parameter of type "Transaction[]".
@@ -65,10 +76,17 @@ function calculateTotalExpenses(transactions: Transaction[]): number {
 // calculateNetTotal(transactions); // => 2400  (3200 - 800)
 function calculateNetTotal(transactions: Transaction[]): number {
   // write your code here...
+  const newTotalIncome = transactions
+    .filter((transaction) => transaction[0] === "income")
+    .reduce((total, transaction) => total + transaction[1], 0);
+  const newCalculateExpense = transactions
+    .filter((transaction) => transaction[0] === "expense")
+    .reduce((total, transacion) => total + transacion[1], 0);
+  const netTotal = newTotalIncome - newCalculateExpense;
 
-  return -1; // replace -1 with what you see is fit
+  return netTotal; // replace -1 with what you see is fit
 }
-
+console.log(calculateNetTotal(transactions));
 // `filterSignificantTransactions` function that:
 // - Accepts 2 parameters:
 // - a "transactions" parameter of type "Transaction[]".
@@ -81,9 +99,13 @@ function filterSignificantTransactions(
   threshold: number
 ): Transaction[] {
   // write your code here...
+  const newFilter = transactions.filter(
+    (transaction) => transaction[1] >= threshold
+  );
 
-  return []; // replace empty array with what you see is fit
+  return newFilter; // replace empty array with what you see is fit
 }
+console.log(filterSignificantTransactions(transactions, 1000));
 
 export {
   Transaction,
